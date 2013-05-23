@@ -15,6 +15,7 @@ function StartScene:ctor()
 		local cls = require("ui.label.TLabel")
 		local tlab = cls.new({
 			name = 'lab_' .. i,
+			text = 'lab_' .. i,
 			x = 200 * i,
 			y = display.top - 100
 		})
@@ -24,6 +25,7 @@ function StartScene:ctor()
 
 	self.btSend = ui.newTTFLabelMenuItem({
 		text = "Send",
+		size = 64,
 		x = display.cx,
 		y = display.bottom + 100,
 		listener = function()
@@ -32,6 +34,10 @@ function StartScene:ctor()
 				etype = "time"
 			})
 			self.btSend.count = self.btSend.count + 1
+			if self.btSend.count > 3 then
+				game.enterFreshScene()
+				return
+			end
 			local tlab = self:getChildByTag(self.btSend.count)
 			if tlab then
 				tlab:destory()

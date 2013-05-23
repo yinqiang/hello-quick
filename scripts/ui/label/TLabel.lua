@@ -8,7 +8,7 @@ end)
 function TLabel:ctor(params)
 	self.name = params.name or '<unnamed>'
 
-	if params.text then self.setString(params.text) end
+	if params.text then self:setString(params.text) end
 	local x, y = params.x, params.y
 	if x and y then self:setPosition(x, y) end
 
