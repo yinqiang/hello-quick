@@ -22,10 +22,8 @@ function EventManager:addEventListener(eventType, listener)
 	assert(type(listener) == "function", "EventManager:addEventListener - listener is not a function")
 	local group = self.events[eventType]
 	if not group then
-		self.events[eventType] = {}
+		self.events[eventType] = {count = 0, listeners = {}}
 		group = self.events[eventType]
-		group.count = 0
-		group.listeners = {}
 	end
 	group.count = group.count + 1
 	group.listeners[listener] = 1
